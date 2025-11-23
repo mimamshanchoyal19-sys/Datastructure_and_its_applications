@@ -81,4 +81,7 @@ int main() {
     display(start);
 
     printf("\n Sparse matrix is \n");
+    display_matrix(start,m,n);
+    return 0;
+}
 

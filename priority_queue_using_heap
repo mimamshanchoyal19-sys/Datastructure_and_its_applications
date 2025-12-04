@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void heapify(int a[10],int n)
+{
+    int i,k,v,flag=0,j;
+    for(i=n/2;i>=1;i--)
+    {
+        k=i;
+        v=a[k];
+        while(!flag && 2*k<=n)
+        {
+            j=2*k;
+            if(j<n)
+            {
+                if (a[j]<a[j+1])
+                    j=j+1;
+            }
+            if(v>=a[j])
+                flag=1;
+            else{
+                a[k]=a[j];
+                k=j;
+            }
+        }
+    a[k]=v;
+    flag=0;
+    }
+}
+int main()
+{
+    int a[10],n,i,ch;
+    for(;;)
+    {
+        printf("\n 1.create name");
+        printf("\n 2.extract max");
+        printf("\n 3.exit");
+        printf("\n read choice");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1: printf("\n read number of elements");
+                    scanf("%d",&n);
+                    printf("\n read elements");
+                    for(i=1;i<=n;i++)
+                        scanf("%d",&a[i]);
+                        heapify(a,n);
+                    printf("\n elements after constructing heap\n");
+                    for(i=1;i<=n;i++)
+                        printf("%d\t",a[10]);
+                    break;
+            case 2: if(n>=1)
+                    {
+                    printf("\n key deleted is %d",a[1]);
+                    a[1]=a[n];
+                    ch=n-1;
+                    heapify(a,n);
+                    printf("\n heap after deleting \n");
+                    for(i=1;i<n;i++)
+                        printf("%d\t",a[i]);
+                    }
+                    else
+                        printf("\n no element to delete");
+                        break;
+                    default:exit(0);
+        }
+    }
+    return 0;
+}
